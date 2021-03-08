@@ -1,4 +1,5 @@
 *.sdf
+*.out
 Debug/
 Release/
 x64/
