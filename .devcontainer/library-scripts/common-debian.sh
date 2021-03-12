@@ -78,6 +78,7 @@ if [ "${PACKAGES_ALREADY_INSTALLED}" != "true" ]; then
         libstdc++6 \
         zlib1g \
         locales \
+        netbase \
         sudo"
 
     # Install libssl1.1 if available

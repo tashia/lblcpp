@@ -21,13 +21,14 @@ RUN apt-get update \
 RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - \
     && add-apt-repository "${REPO_NAME}" \
     && apt-get update \
-    && apt-get install -y clang-"${LLVM_VERSION}" lldb-"${LLVM_VERSION}" lld-"${LLVM_VERSION}" clangd-"${LLVM_VERSION}" libc++-"${LLVM_VERSION}"-dev libc++abi-"${LLVM_VERSION}"-dev \
+    && apt-get install -y make clang-"${LLVM_VERSION}" lldb-"${LLVM_VERSION}" lld-"${LLVM_VERSION}" clangd-"${LLVM_VERSION}" libc++-"${LLVM_VERSION}"-dev libc++abi-"${LLVM_VERSION}"-dev \
     && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/ \
     && ln -s  /usr/bin/clang++-"${LLVM_VERSION}" /usr/bin/clang++ \
     && ln -s  /usr/bin/clang-"${LLVM_VERSION}" /usr/bin/clang \
     && ln -s  /usr/bin/clangd-"${LLVM_VERSION}" /usr/bin/clangd \
     && echo "export PATH=/usr/lib/clang/"${LLVM_VERSION}".0.0/bin:$PATH" >> ~/.zshrc \
-    && echo "export LD_LIBRARY_PATH=/usr/lib/clang/"${LLVM_VERSION}".0.0/lib:$LD_LIBRARY_PATH" >> ~/.zshrc
+    && echo "export LD_LIBRARY_PATH=/usr/lib/clang/"${LLVM_VERSION}".0.0/lib:$LD_LIBRARY_PATH" >> ~/.zshrc \
+    && echo "export CC=clang CXX=clang++" >> ~/.zshrc
 
 # RUN apt-get install -y libc++-"${LLVM_VERSION}"-dev libc++abi-"${LLVM_VERSION}"-dev \
 #     && echo "export PATH=/usr/lib/clang/"${LLVM_VERSION}".0.0/bin:$PATH" >> ~/.zshrc \
